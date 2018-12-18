@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房价预测</title>
+    <script type="text/javascript" src="layui/layui.all.js"></script>
+    <!--<script type="text/javascript" src="js/vendor/jquery-2.2.4.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="./layui/css/layui.css">
+</head>
+<body>
+<div class="layui-container">
+    <form class="layui-form" action="">
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">小区</label>
+            <div class="layui-input-inline">
+                <input type="text" name="session" required  lay-verify="required" placeholder="输入小区" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">建筑年代</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="010">70年代</option>
+                    <option value="021">80年代</option>
+                    <option value="0571">90年代</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">面积</label>
+            <div class="layui-input-inline">
+                <input type="text" name="area" required  lay-verify="required" placeholder="输入面积(平方米)" autocomplete="off" class="layui-input">
+
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">户型</label>
+
+            <div class="layui-input-inline">
+                <select name="home_type" lay-verify="">
+                    <option value="010">公寓</option>
+                    <option value="021">平方</option>
+                    <option value="0571">别墅</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="rooms" lay-verify="">
+                    <option value="010">1室</option>
+                    <option value="021">2室</option>
+                    <option value="0571">3室</option>
+                    <option value="0572">4室</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="lofts" lay-verify="">
+                    <option value="010">1厅</option>
+                    <option value="021">2厅</option>
+                    <option value="0571">3厅</option>
+                    <option value="0572">4厅</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">朝向</label>
+            <div class="layui-input-inline">
+                <select name="aspect">
+                    <option value="010">东</option>
+                    <option value="021">南</option>
+                    <option value="0571">西</option>
+                    <option value="0572">北</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">楼层</label>
+            <div class="layui-input-inline">
+                <input type="number" min="1" name="floor" required  lay-verify="required" placeholder="输入楼层" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">总楼层</label>
+            <div class="layui-input-inline">
+                <input type="number" min="1" name="tital_floor" required  lay-verify="required" placeholder="输入总楼层" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">房源特色</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="" title="满五">
+            </div>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="" title="唯一">
+            </div>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="" title="精装修">
+            </div>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="" title="地铁房">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        //Demo
+        layui.use([ 'jquery', 'layer', 'element' ], function(){
+            var form = layui.form;
+            form.render('select');
+            form.render('checkbox');
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+</div>
+
+</body>
+</html>
