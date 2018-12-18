@@ -15,7 +15,6 @@ class MainHandler(tornado.web.RequestHandler):
     def location(self,city,district,community):
         add=city+district+community
         if add in self.m:
-            print(self.m)
             return self.m[add]
         url='https://restapi.amap.com/v3/geocode/geo?address='+add+'&output=json&key='+self.api
         url = quote(url, safe = string.printable)
@@ -31,12 +30,11 @@ class MainHandler(tornado.web.RequestHandler):
         return res
     
     def get(self):
-        print(1)
-        city=self.get_argument('city')
-        district = self.get_argument('district')
-        community=self.get_argument('community') #小区
+        city=self.get_argument('city','北京市')
+        district = self.get_argument('district','海淀区')
+        community=self.get_argument('community','北航') #小区
         lng,lat=self.location(city,district,community)
-        square = float(self.get_argument('square'))
+        square = float(self.get_argument('square','100'))
         living = int(self.get_argument('living',0))
         drawing = int(self.get_argument('drawing',0))
         kitchen = int(self.get_argument('kitchen',0))
@@ -62,5 +60,5 @@ if __name__ == "__main__":
     application = tornado.web.Application([
         (r"/", MainHandler),
     ])
-    application.listen(6666)
+    application.listen(8124)
     tornado.ioloop.IOLoop.current().start()
