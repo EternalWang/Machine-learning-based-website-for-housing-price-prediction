@@ -10,6 +10,42 @@
 <body>
 <div class="layui-container">
     <form class="layui-form" action="">
+    
+            <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">城市</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="010">北京市</option>
+                    <option value="021" disabled="true">武汉市</option>
+                    <option value="0571" disabled="true">上海市</option>
+                </select>
+            </div>
+        </div>
+                <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">区(县)</label>
+            <div class="layui-input-inline">
+                <select name="city" lay-verify="">
+                    <option value="昌平区">昌平区</option>
+                    <option value="朝阳区">朝阳区</option>
+                    <option value="大兴区">大兴区</option>
+                    <option value="东城区">东城区</option>
+                    <option value="房山区">房山区</option>
+                    <option value="丰台区">丰台区</option>
+                    <option value="海淀区">海淀区</option>
+                    <option value="怀柔区">怀柔区</option>
+                    <option value="门头沟区">门头沟区</option>
+                    <option value="密云区">密云区</option>
+                    <option value="平谷区">平谷区</option>
+                    <option value="石景山区">石景山区</option>
+                    <option value="顺义区">顺义区</option>
+                    <option value="通州区">通州区</option>
+                    <option value="西城区">西城区</option>
+<option value="延庆区">延庆区</option>
+                </select>
+            </div>
+        </div>
+        
+    
         <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label">小区</label>
             <div class="layui-input-inline">
@@ -17,6 +53,15 @@
             </div>
         </div>
 
+
+
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label">面积</label>
+            <div class="layui-input-inline">
+                <input type="text" name="area" required  lay-verify="required" placeholder="输入面积(平方米)" autocomplete="off" class="layui-input">
+
+            </div>
+        </div>
         <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label">建筑年代</label>
             <div class="layui-input-inline">
@@ -27,15 +72,6 @@
                 </select>
             </div>
         </div>
-
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">面积</label>
-            <div class="layui-input-inline">
-                <input type="text" name="area" required  lay-verify="required" placeholder="输入面积(平方米)" autocomplete="off" class="layui-input">
-
-            </div>
-        </div>
-
         <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label">户型</label>
 
