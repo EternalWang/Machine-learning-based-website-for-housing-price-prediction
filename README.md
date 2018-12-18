@@ -3,3 +3,5 @@
 主要页面是about-us.html和index.html.
 参考链家网站https://bj.lianjia.com/yezhu/gujia/以及“页面1 2 3”
 
+# server
+new.csv放主目录下，运行house_prepare.py,再运行server.py
