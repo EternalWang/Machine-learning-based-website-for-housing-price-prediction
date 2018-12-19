@@ -8,10 +8,176 @@
     <link rel="stylesheet" type="text/css" href="./layui/css/layui.css">
 </head>
 <body>
+
 <div class="layui-container">
-    <form class="layui-form" action="">
+
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-row"><!--最外层行 不可见-->
+            <div class="layui-col-md4 layui-col-md-offset4"><!--最外层的列元素-->
+                <div class="layui-row grid-demo"><!--grid 形成列布局-->
+                    <div class="layui-col-md12"><!--切换城市所在块-->
+                        <blockquote><!--外围方框-->
+                            <div class="layui-form-item">
+                                <div class="layui-row">
+                                    <div class="layui-col-md4">
+                                        城市：北京
+                                    </div>
+                                    <div class="layui-col-md4 layui-col-md-offset4">
+                                        <button class="layui-bt">
+                                            切换城市
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+
+                    <div class="layui-col-md12"><!--第二大块-->
+                        <blockquote><!--外围方框-->
+                            <div class="layui-row">
+                                <div class="layui-col-md2"><!--左块-->
+                                    基础选项
+                                </div>
+                                <div class="layui-col-md10"><!--右块-->
+                                    <div class="layui-row grid-demo"><!--通过grid形成列-->
+                                        <div class="layui-col-md12 layui-form-item ">
+                                            <label class="layui-form-label">
+                                                类型：
+                                            </label>
+                                            <div class="layui-input-inline">
+                                                <input type="radio" name="lx" value="gy" title="公寓">
+                                                <input type="radio" name="lx" value="pf" title="平房">
+                                                <input type="radio" name="lx" value="bs" title="别墅">
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+                                            <label class="layui-form-label">
+                                                区域：
+                                            </label>
+                                            <div class="layui-input-inline">
+                                                <select name="qx" lay-verify="">
+                                                    <option value="海淀区">海淀区</option>
+                                                    <option value="昌平区">昌平区</option>
+                                                    <option value="朝阳区">朝阳区</option>
+                                                    <option value="大兴区">大兴区</option>
+                                                    <option value="东城区">东城区</option>
+                                                    <option value="房山区">房山区</option>
+                                                    <option value="丰台区">丰台区</option>
+                                                    <option value="怀柔区">怀柔区</option>
+                                                    <option value="门头沟区">门头沟区</option>
+                                                    <option value="密云区">密云区</option>
+                                                    <option value="平谷区">平谷区</option>
+                                                    <option value="石景山区">石景山区</option>
+                                                    <option value="顺义区">顺义区</option>
+                                                    <option value="通州区">通州区</option>
+                                                    <option value="西城区">西城区</option>
+                                                    <option value="延庆区">延庆区</option>
+                                                </select>
+                                            </div>
+                                            <div class="layui-form-mid">
+                                                区县
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <select name="jd" lay-verify="">
+                                                    <option value="万寿路">万寿路</option>
+                                                    <option value="羊坊店">羊坊店</option>
+                                                    <option value="甘家口">甘家口</option>
+                                                    <option value="八里庄">八里庄</option>
+                                                    <option value="紫竹院">紫竹院</option>
+                                                    <option value="北下关">北下关</option>
+                                                    <option value="北太平庄">北太平庄</option>
+                                                    <option value="海淀">海淀</option>
+                                                    <option value="中关村">中关村</option>
+                                                    <option value="学院路">学院路</option>
+                                                    <option value="清河">清河</option>
+                                                    <option value="青龙桥">青龙桥</option>
+                                                    <option value="香山">香山</option>
+                                                    <option value="西三旗">西三旗</option>
+                                                    <option value="马连洼">马连洼</option>
+                                                    <option value="花园路">花园路</option>
+                                                    <option value="田村路">田村路</option>
+                                                    <option value="上地">上地</option>
+                                                    <option value="燕园">燕园</option>
+                                                    <option value="清华园">清华园</option>
+                                                    <option value="永定路">永定路</option>
+                                                </select>
+                                            </div>
+                                            <div class="layui-form-mid">
+                                                街道
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+                                            <label class="layui-form-label">
+                                                建筑年份
+                                            </label>
+                                            <div class="layui-input-inline">
+                                                <select name="year-min" lay-verify="">
+                                                    <option value="70">70年代</option>
+                                                    <option value="80">80年代</option>
+                                                    <option value="90">90年代</option>
+                                                    <option value="00">00年代</option>
+                                                    <option value="10">10年代</option>
+                                                </select>
+                                            </div>
+                                            <div class="layui-form-mid">
+                                                -
+                                            </div> 
+                                            <div class="layui-input-inline">
+                                                <select name="year-max" lay-verify="">
+                                                    <option value="70">70年代</option>
+                                                    <option value="80">80年代</option>
+                                                    <option value="90">90年代</option>
+                                                    <option value="00">00年代</option>
+                                                    <option value="10">10年代</option>
+                                                </select>
+                                            </div>
+                                            <input type="checkbox" name="bx" title="不限" lay-skin="primary"> 
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+                                            
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+
+                                        </div>
+                                        <div class="layui-col-md12 layui-form-item">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-row">
+            <blockquote class="layui-elem-quote layui-quote-nm layui-col-md4 layui-col-md-offset4">
+                <div class="layui-row">
+                    <div class="layui-col-md4">
+                        城市：北京
+                    </div>
+                    <button data-method="offset" data-type="auto" class="layui-col-md4 layui-col-md-offset4 layui-btn layui-btn-normal">
+                        切换城市
+                    </button>
+                </div>
+            </blockquote>
+        </div>
     
-            <div class="layui-form-item layui-form-pane">
+        <div>
+
+        </div>
+        <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-inline">
                 <select name="city" lay-verify="">
@@ -21,7 +187,7 @@
                 </select>
             </div>
         </div>
-                <div class="layui-form-item layui-form-pane">
+        <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label">区(县)</label>
             <div class="layui-input-inline">
                 <select name="city" lay-verify="">
@@ -40,7 +206,7 @@
                     <option value="顺义区">顺义区</option>
                     <option value="通州区">通州区</option>
                     <option value="西城区">西城区</option>
-<option value="延庆区">延庆区</option>
+                    <option value="延庆区">延庆区</option>
                 </select>
             </div>
         </div>
