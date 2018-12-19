@@ -229,8 +229,7 @@
                 delete data.total_floor;
                 var square=data.square;
                 data=parseParams(data);
-                
-                //alert(data);
+                //alert(decodeURI(data));
                 $.ajax({
                     url:"http://10.134.139.149:8124/?"+data,
                     method:'get',

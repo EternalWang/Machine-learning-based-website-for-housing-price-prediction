@@ -11,20 +11,35 @@
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 
 </head>
+<!--<body style="background-image: url(bg.png)">-->
+<body style="background-image: url(bg.jpg)">
 
-<body style="background-image: url(bg.png)">
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-  <legend style="color: #dddddd">预估价格</legend>
-</fieldset>   
+
+<div class="layui-col-md6 layui-col-md-offset3">
+
 <form class="layui-form" action="" lay-filter="example"> 
 <div style="padding: 20px; " class="content" >
-
+    <div class="layui-row">
+    <div class="layui-elem-quote layui-col-md9" style="opacity: 0.7;">
+      <input type="text" name="information" class="layui-input">
+    </div>
+    <div class="layui-col-md3"></div>
+    </div>
+    <div class="layui-row">
+    
+      <div class="layui-col-md12">
+          <h1 class="site-h1" style="text-align:center">预估价格</h1>
+      </div>
+    
+    </div>
+    <hr>
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md6">
       <div class="layui-card layui-form-item" style="opacity: 0.7">
         <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">房屋总价</div>
-        <div class="layui-card-body" style="height: 100px;padding: 150px;">
-          <output style="font-size: 80px;" name="totalPrice">9999</output>万元
+        <div class="layui-card-body" style="height: 100px;padding: 70px;">
+          <output style="font-size: 80px;" name="totalPrice">9999</output>万元<br>
+          误差在<output name="totalPriceLow">9999</output>万 - <output name="totalPriceHigh">9999</output>万之间
           
         </div>
       </div>
@@ -32,31 +47,35 @@
     <div class="layui-col-md6">
       <div class="layui-card layui-form-item" style="opacity: 0.7;">
         <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">平米均价</div>
-        <div class="layui-card-body" style="height: 100px;padding: 150px;">
-          <output style="font-size: 80px;" name="averagePrice">9999</output>万元/平米
+        <div class="layui-card-body" style="height: 100px;padding: 70px;">
+          <output style="font-size: 80px;" name="averagePrice">9999</output>元/平米<br>
+          误差在<output name="averagePriceLow">9999</output>元/平米 - <output name="averagePriceHigh">9999</output>元/平米之间
         </div>
       </div>
     </div>
-    <div class="layui-col-md12">
+    
+    <!--
+    <div class="layui-col-md2">
       <div class="layui-card layui-form-item" style="opacity: 0.7;">
         <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color: #008888;font-size: 18px">房屋信息</div>
-        <div class="layui-card-body">
-           <output name="information">.../.../.../.../</output>
+        <div class="layui-card-body" >
+          <textarea  name="information" class="layui-textarea" style="min-height: 200px;">.../.../.../.../</textarea >
         </div>
       </div>
     </div>
+    -->
   </div>
+  <hr>
+
 </div> 
 </form> 
 
- 
-<br>
-<div class="layui-form-item">
-    <div class="layui-input-block">
-        <button class="layui-btn" lay-submit lay-filter="formDemo">咨询服务</button>
+    <div class="layui-row ">
+        <button class="layui-btn layui-col-md2 layui-col-md-offset5" lay-submit lay-filter="formDemo">重新估价</button>
     </div>
-</div>
-          
+
+
+</div> 
 <script src="layui\layui.js" charset="utf-8"></script>
 <script src="layui\layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -82,36 +101,85 @@
 　　　　　　return "";
 　　　　}
 　　}
-　　function GetUrlParamByIndex(index) {
-　　　　var url = document.location.toString();
-　　　　var arrObj = url.split("?");
-
-　　　　if (arrObj.length > 1) {
-　　　　　　var arrPara = arrObj[1].split("&");
-　　　　　　var arr;
-          return arrPara[index].split("=")[1];
-　　　　　　/*for (var i = 0; i < arrPara.length; i++) {
-　　　　　　　　arr = arrPara[i].split("=");
-
-　　　　　　　　if (arr != null && arr[0] == paraName) {
-　　　　　　　　　　return arr[1];
-　　　　　　　　}
-　　　　　　}*/
-　　　　　　return "";
-　　　　}
-　　　　else {
-　　　　　　return "";
-　　　　}
-　　}
 
 alert("test");
     var totalPrice=GetUrlParam("totalPrice"),averagePrice=GetUrlParam("averagePrice"),information="",arrObj=document.location.toString().split("?")[1].split("&");
-    /*for(var i=0;i<arrObj.length-2;i++)
+    var json={city:"城市",district:"区（县）",community:"小区",square:"面积",ctime:"建筑年代",rcondition:"装修情况",struc:"建筑结构",btype:"户型",
+    living:"卧室",drawing:"客厅",kitchen:"厨房",bath:"卫生间",floor:"楼层",five:"是否满五年",elevator:"是否有电梯",subway:"是否靠近地铁站"}
+    for(var i=0;i<arrObj.length-2;i++)
     {
-      var obj=arrObj[i].split("=");
-      information=information+obj[0]+":"+obj[1];
-    }*/
-    information="城市：北京 面积：50";
+      var obj=arrObj[i].split("="),val=obj[1];
+      if(obj[0]=="square")
+      val+="平米";
+      if(obj[0]=="ctime")
+      val+="年";
+      if(obj[0]=="rcondition")
+      {
+        if(val==1)
+        val="其他";
+        if(val==2)
+        val="毛坯房";
+        if(val==3)
+        val="粗装修";
+        if(val==4)
+        val="精装修";
+      }
+      if(obj[0]=="struc")
+      {
+        if(val==1)
+        val="未知";
+        if(val==2)
+        val="混合";
+        if(val==3)
+        val="砖木";
+        if(val==4)
+        val="砖及混凝土";
+        if(val==5)
+        val="铁";
+        if(val==6)
+        val="铁及复合材料";
+      }
+      if(obj[0]=="btype")
+      {
+        if(val==1)
+        val="塔楼";
+        if(val==2)
+        val="平房";
+        if(val==3)
+        val="板房";
+        if(val==4)
+        val="混合结构";
+      }
+      if(obj[0]=="living")
+        val+="室";
+      if(obj[0]=="drawing")
+        val+="厅";
+      if(obj[0]=="kitchen")
+        val+="厨";
+      if(obj[0]=="bath")
+        val+="卫";
+      if(obj[0]=="floor")
+      {
+        if(val==0)
+        val="高层"
+        if(val==1)
+        val="中层";
+        if(val==2)
+        val="低层";
+        if(val==3)
+        val="底层";
+        if(val==4)
+        val="顶层";
+      }
+      if(obj[0]=="five")
+      val="满五年";
+      if(obj[0]=="elevator")
+      val="电梯";
+      if(obj[0]=="subway")
+      val="地铁";
+      information=information+val+" ";
+    }
+    information=decodeURI(information);
     
 
 alert(totalPrice);
@@ -119,18 +187,14 @@ layui.use(['form', 'layer'], function(){
   var form=layui.form;
   alert(totalPrice);
   form.val('example',{
-    "totalPrice":totalPrice,
-    "averagePrice":averagePrice,
+    "totalPrice":(totalPrice*1.0).toFixed(),
+    "totalPriceLow":(totalPrice*0.9).toFixed(),
+    "totalPriceHigh":(totalPrice*1.1).toFixed(),
+    "averagePrice":(averagePrice*10000).toFixed(),
+    "averagePriceLow":(averagePrice*10000*0.9).toFixed(),
+    "averagePriceHigh":(averagePrice*10000*1.1).toFixed(),
     "information":information
   });
-  /*var element = layui.element;
-  var layer = layui.layer;
-  
-  //监听折叠
-  element.on('submit(formDemo)', function(data){
-    alert("ok");
-    layer.msg('展开状态：'+ data.show);
-  });*/
 });
 </script>
 
