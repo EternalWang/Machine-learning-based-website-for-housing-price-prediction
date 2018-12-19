@@ -215,7 +215,7 @@
                 data=data.field;
                 var floor=data.floor,total_floor=data.total_floor,rank=floor/total_floor;
                 //alert(rank);
-                
+                //location.href="result.html";
                 if(floor==1)
                 data.floor=3;
                 else if(floor==total_floor)
@@ -227,6 +227,7 @@
                 else
                 data.floor=1;
                 delete data.total_floor;
+                var square=data.square;
                 data=parseParams(data);
                 
                 //alert(data);
@@ -234,11 +235,15 @@
                     url:"http://10.134.139.149:8124/?"+data,
                     method:'get',
                     success:function(res){
-                        layer.msg(JSON.stringify(res));
+                        //layer.msg(JSON.stringify(res));
+                        alert(res);
+                        var averagePrice=res/square;
+                        location.href="result.html?"+data+"&totalPrice="+res+"&averagePrice="+averagePrice;
                     },
                     error: function () {
                         layer.msg("错误");
                         alert(this.url);
+                        //location.href="result.html?totalPrice=1&averagePrice=2";
                     }
 
                 })
