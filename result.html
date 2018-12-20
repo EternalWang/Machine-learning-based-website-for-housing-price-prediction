@@ -1,266 +1,272 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>估计结果</title>
-  
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="layui\css\layui.css"  media="all">
-  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	<meta charset="utf-8">
+	<title>估计结果</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="layui\css\layui.css" media="all">
+	<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 
 </head>
 <!--<body style="background-image: url(bg.png)">-->
+
 <body style="background-image: url(bg.jpg)">
+	<div class="layui-col-md6 layui-col-md-offset3">
+		<form class="layui-form" action="" lay-filter="example">
+			<div style="padding: 20px; " class="content">
+				<div class="layui-row">
+					<div class="layui-elem-quote layui-col-md9" style="opacity: 0.7;">
+						<input type="text" name="information" class="layui-input">
+					</div>
+					<div class="layui-col-md3"></div>
+				</div>
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<h1 class="site-h1" style="text-align:center">预估价格</h1>
+					</div>
+				</div>
+				<hr>
+				<div class="layui-row layui-col-space15">
+					<div class="layui-col-md6">
+						<div class="layui-card layui-form-item" style="opacity: 0.7">
+							<div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">房屋总价</div>
+							<div class="layui-card-body" style="height: 100px;padding: 70px;">
+								<output style="font-size: 80px;" name="totalPrice">9999</output>万元<br>
+								误差在<output name="totalPriceLow">9999</output>万 - <output name="totalPriceHigh">9999</output>万之间
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<div class="layui-card layui-form-item" style="opacity: 0.7;">
+							<div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">平米均价</div>
+							<div class="layui-card-body" style="height: 100px;padding: 70px;">
+								<output style="font-size: 80px;" name="averagePrice">9999</output>元/平米<br>
+								误差在<output name="averagePriceLow">9999</output>元/平米 - <output name="averagePriceHigh">9999</output>元/平米之间
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="layui-card" style="opacity: 0.7">
+					<div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">附近商圈二手房价格趋势</div>
+					<div class="layui-card-body" style="width: 900px;height:300px;" id="main">
+					</div>
+				</div>
+				<hr>
+			</div>
+		</form>
+		<form class="layui-form">
+			<div class="layui-row ">
+				<button class="layui-btn layui-col-md2 layui-col-md-offset5" lay-submit lay-filter="formDemo">重新估价</button>
+			</div>
+		</form>
+	</div>
+	<script src="layui\layui.js" charset="utf-8"></script>
+	<script src="echarts\echarts.common.min.js"></script>
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	<script>
+		function GetUrlParam(paraName) {
+			var url = document.location.toString();
+			var arrObj = url.split("?");
 
+			if (arrObj.length > 1) {
+				var arrPara = arrObj[1].split("&");
+				var arr;
 
-<div class="layui-col-md6 layui-col-md-offset3">
+				for (var i = 0; i < arrPara.length; i++) {
+					arr = arrPara[i].split("=");
 
-<form class="layui-form" action="" lay-filter="example"> 
-<div style="padding: 20px; " class="content" >
-    <div class="layui-row">
-    <div class="layui-elem-quote layui-col-md9" style="opacity: 0.7;">
-      <input type="text" name="information" class="layui-input">
-    </div>
-    <div class="layui-col-md3"></div>
-    </div>
-    <div class="layui-row">
-    
-      <div class="layui-col-md12">
-          <h1 class="site-h1" style="text-align:center">预估价格</h1>
-      </div>
-    
-    </div>
-    <hr>
-  <div class="layui-row layui-col-space15">
-    <div class="layui-col-md6">
-      <div class="layui-card layui-form-item" style="opacity: 0.7">
-        <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">房屋总价</div>
-        <div class="layui-card-body" style="height: 100px;padding: 70px;">
-          <output style="font-size: 80px;" name="totalPrice">9999</output>万元<br>
-          误差在<output name="totalPriceLow">9999</output>万 - <output name="totalPriceHigh">9999</output>万之间
-          
-        </div>
-      </div>
-    </div>
-    <div class="layui-col-md6">
-      <div class="layui-card layui-form-item" style="opacity: 0.7;">
-        <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">平米均价</div>
-        <div class="layui-card-body" style="height: 100px;padding: 70px;">
-          <output style="font-size: 80px;" name="averagePrice">9999</output>元/平米<br>
-          误差在<output name="averagePriceLow">9999</output>元/平米 - <output name="averagePriceHigh">9999</output>元/平米之间
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="layui-card" style="opacity: 0.7">
-    <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">附近商圈二手房价格趋势</div>
-    <div class="layui-card-body" style="width: 900px;height:300px;" id="main">
-    </div>
-  </div>
-  <hr>
-</div> 
-</form> 
-<form class="layui-form">
-    <div class="layui-row ">
-        <button class="layui-btn layui-col-md2 layui-col-md-offset5" lay-submit lay-filter="formDemo">重新估价</button>
-    </div>
-  </form>
+					if (arr != null && arr[0] == paraName) {
+						return arr[1];
+					}
+				}
+				return "";
+			} else {
+				return "";
+			}
+		}
+		var totalPrice = GetUrlParam("totalPrice"),
+			averagePrice = GetUrlParam("averagePrice"),
+			information = "",
+			arrObj = document.location.toString().split("?")[1].split("&");
+		var json = {
+			city: "城市",
+			district: "区（县）",
+			community: "小区",
+			square: "面积",
+			ctime: "建筑年代",
+			rcondition: "装修情况",
+			struc: "建筑结构",
+			btype: "户型",
+			living: "卧室",
+			drawing: "客厅",
+			kitchen: "厨房",
+			bath: "卫生间",
+			floor: "楼层",
+			five: "是否满五年",
+			elevator: "是否有电梯",
+			subway: "是否靠近地铁站"
+		}
+		for (var i = 0; i < arrObj.length - 2; i++) {
+			var obj = arrObj[i].split("="),
+				val = obj[1];
+			if (obj[0] == "square")
+				val += "平米";
+			if (obj[0] == "ctime")
+				val += "年";
+			if (obj[0] == "rcondition") {
+				if (val == 1)
+					val = "其他";
+				if (val == 2)
+					val = "毛坯房";
+				if (val == 3)
+					val = "粗装修";
+				if (val == 4)
+					val = "精装修";
+			}
+			if (obj[0] == "struc") {
+				if (val == 1)
+					val = "未知";
+				if (val == 2)
+					val = "混合";
+				if (val == 3)
+					val = "砖木";
+				if (val == 4)
+					val = "砖及混凝土";
+				if (val == 5)
+					val = "铁";
+				if (val == 6)
+					val = "铁及复合材料";
+			}
+			if (obj[0] == "btype") {
+				if (val == 1)
+					val = "塔楼";
+				if (val == 2)
+					val = "平房";
+				if (val == 3)
+					val = "板房";
+				if (val == 4)
+					val = "混合结构";
+			}
+			if (obj[0] == "living")
+				val += "室";
+			if (obj[0] == "drawing")
+				val += "厅";
+			if (obj[0] == "kitchen")
+				val += "厨";
+			if (obj[0] == "bath")
+				val += "卫";
+			if (obj[0] == "floor") {
+				if (val == 0)
+					val = "高层"
+				if (val == 1)
+					val = "中层";
+				if (val == 2)
+					val = "低层";
+				if (val == 3)
+					val = "底层";
+				if (val == 4)
+					val = "顶层";
+			}
+			if (obj[0] == "five")
+				val = "满五年";
+			if (obj[0] == "elevator")
+				val = "电梯";
+			if (obj[0] == "subway")
+				val = "地铁";
+			information = information + val + " ";
+		}
+		information = decodeURI(information);
+		layui.use(['form', 'layer'], function () {
+			var form = layui.form;
+			//alert(totalPrice);
+			form.val('example', {
+				"totalPrice": (totalPrice * 1.0).toFixed(),
+				"totalPriceLow": (totalPrice * 0.9).toFixed(),
+				"totalPriceHigh": (totalPrice * 1.1).toFixed(),
+				"averagePrice": (averagePrice * 10000).toFixed(),
+				"averagePriceLow": (averagePrice * 10000 * 0.9).toFixed(),
+				"averagePriceHigh": (averagePrice * 10000 * 1.1).toFixed(),
+				"information": information
+			});
+			form.on('submit(formDemo)', function () {
+				window.open("lay_index.html");
+			});
+		});
+		var initData = new Number,
+			chartData = [],
+			step = new Number;
+		initData = averagePrice * 7000, step = averagePrice * 500;
+		for (var i = 0; i < 12; i++) {
+			chartData.push(initData);
+			initData += step;
+		}
 
-</div> 
-<script src="layui\layui.js" charset="utf-8"></script>
-<script src="echarts\echarts.common.min.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-　　function GetUrlParam(paraName) {
-　　　　var url = document.location.toString();
-　　　　var arrObj = url.split("?");
-
-　　　　if (arrObj.length > 1) {
-　　　　　　var arrPara = arrObj[1].split("&");
-　　　　　　var arr;
-
-　　　　　　for (var i = 0; i < arrPara.length; i++) {
-　　　　　　　　arr = arrPara[i].split("=");
-
-　　　　　　　　if (arr != null && arr[0] == paraName) {
-　　　　　　　　　　return arr[1];
-　　　　　　　　}
-　　　　　　}
-　　　　　　return "";
-　　　　}
-　　　　else {
-　　　　　　return "";
-　　　　}
-　　}
-
-//alert("test");
-    var totalPrice=GetUrlParam("totalPrice"),averagePrice=GetUrlParam("averagePrice"),information="",arrObj=document.location.toString().split("?")[1].split("&");
-    var json={city:"城市",district:"区（县）",community:"小区",square:"面积",ctime:"建筑年代",rcondition:"装修情况",struc:"建筑结构",btype:"户型",
-    living:"卧室",drawing:"客厅",kitchen:"厨房",bath:"卫生间",floor:"楼层",five:"是否满五年",elevator:"是否有电梯",subway:"是否靠近地铁站"}
-    for(var i=0;i<arrObj.length-2;i++)
-    {
-      var obj=arrObj[i].split("="),val=obj[1];
-      if(obj[0]=="square")
-      val+="平米";
-      if(obj[0]=="ctime")
-      val+="年";
-      if(obj[0]=="rcondition")
-      {
-        if(val==1)
-        val="其他";
-        if(val==2)
-        val="毛坯房";
-        if(val==3)
-        val="粗装修";
-        if(val==4)
-        val="精装修";
-      }
-      if(obj[0]=="struc")
-      {
-        if(val==1)
-        val="未知";
-        if(val==2)
-        val="混合";
-        if(val==3)
-        val="砖木";
-        if(val==4)
-        val="砖及混凝土";
-        if(val==5)
-        val="铁";
-        if(val==6)
-        val="铁及复合材料";
-      }
-      if(obj[0]=="btype")
-      {
-        if(val==1)
-        val="塔楼";
-        if(val==2)
-        val="平房";
-        if(val==3)
-        val="板房";
-        if(val==4)
-        val="混合结构";
-      }
-      if(obj[0]=="living")
-        val+="室";
-      if(obj[0]=="drawing")
-        val+="厅";
-      if(obj[0]=="kitchen")
-        val+="厨";
-      if(obj[0]=="bath")
-        val+="卫";
-      if(obj[0]=="floor")
-      {
-        if(val==0)
-        val="高层"
-        if(val==1)
-        val="中层";
-        if(val==2)
-        val="低层";
-        if(val==3)
-        val="底层";
-        if(val==4)
-        val="顶层";
-      }
-      if(obj[0]=="five")
-      val="满五年";
-      if(obj[0]=="elevator")
-      val="电梯";
-      if(obj[0]=="subway")
-      val="地铁";
-      information=information+val+" ";
-    }
-    information=decodeURI(information);
-    
-
-//alert(totalPrice);
-layui.use(['form', 'layer'], function(){
-  var form=layui.form;
-  //alert(totalPrice);
-  form.val('example',{
-    "totalPrice":(totalPrice*1.0).toFixed(),
-    "totalPriceLow":(totalPrice*0.9).toFixed(),
-    "totalPriceHigh":(totalPrice*1.1).toFixed(),
-    "averagePrice":(averagePrice*10000).toFixed(),
-    "averagePriceLow":(averagePrice*10000*0.9).toFixed(),
-    "averagePriceHigh":(averagePrice*10000*1.1).toFixed(),
-    "information":information
-  });
-  form.on('submit(formDemo)', function(){
-          window.open("lay_index.html");
-  });
-});
-var initData=new Number,chartData=[],step=new Number;
-initData=averagePrice*7000,step=averagePrice*500;
-for(var i=0;i<12;i++)
-{
-  chartData.push(initData);
-  initData+=step;
-}
-function randomsort(a, b) {
-    return Math.random()>.5 ? -1 : 1;
-    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
-}
-chartData.sort(randomsort);
-//alert(step,chartData);
-
-
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'),'light');
-
-        // 指定图表的配置项和数据
-var option = {
-  title : {
-        text: '均价（元/平米）',
-        //subtext: '均价（元/平米）'
-    },
-    tooltip : {
-        trigger: 'axis',
-        formatter: "单价:{c}元/平"
-    },
-    legend: {
-        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'价格',
-            type:'line',
-            //stack: '总量',
-            data:chartData
-        }
-    ]
-};
-                    
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-
-</script>
+		function randomsort(a, b) {
+			return Math.random() > .5 ? -1 : 1;
+			//用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+		}
+		chartData.sort(randomsort);
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('main'), 'light');
+		// 指定图表的配置项和数据
+		var option = {
+			title: {
+				text: '均价（元/平米）',
+				//subtext: '均价（元/平米）'
+			},
+			tooltip: {
+				trigger: 'axis',
+				formatter: "单价:{c}元/平"
+			},
+			legend: {
+				data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+			},
+			toolbox: {
+				show: true,
+				feature: {
+					mark: {
+						show: true
+					},
+					dataView: {
+						show: true,
+						readOnly: false
+					},
+					magicType: {
+						show: true,
+						type: ['line', 'bar', 'stack', 'tiled']
+					},
+					restore: {
+						show: true
+					},
+					saveAsImage: {
+						show: true
+					}
+				}
+			},
+			calculable: true,
+			xAxis: [{
+				type: 'category',
+				boundaryGap: false,
+				data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+			}],
+			yAxis: [{
+				type: 'value'
+			}],
+			series: [{
+				name: '价格',
+				type: 'line',
+				//stack: '总量',
+				data: chartData
+			}]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	</script>
 
 </body>
+
 </html>

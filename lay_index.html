@@ -1,273 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>房价估计</title>
-    <script type="text/javascript" src="layui/layui.all.js"></script>
-    <!--<script type="text/javascript" src="js/vendor/jquery-2.2.4.min.js"></script>-->
-    <link rel="stylesheet" type="text/css" href="./layui/css/layui.css">
+	<meta charset="UTF-8">
+	<title>房价估计</title>
+	<script type="text/javascript" src="layui/layui.all.js"></script>
+	<!--<script type="text/javascript" src="js/vendor/jquery-2.2.4.min.js"></script>-->
+	<link rel="stylesheet" type="text/css" href="./layui/css/layui.css">
 </head>
+
 <body style="background-image: url(bg.jpg)">
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-  <legend style="color: #dddddd; font-size:45px" >房价估计</legend>
-</fieldset>   
+	<div class="layui-col-md8 layui-col-md-offset2">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend style="color: #dddddd; font-size:45px">房价估计</legend>
+		</fieldset>
+		<form class="layui-form" action="">
+			<div class="content">
+				<div class="layui-row layui-col-space15">
+					<div class="layui-col-md12">
+						<div class="layui-card layui-form-item" style="opacity: 0.8;">
+							<div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">请填写房屋信息</div>
+							<div class="layui-card-body" style="padding: 15px;">
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">城市</label>
+									<div class="layui-input-inline">
+										<select name="city" lay-verify="">
+											<option value="北京市">北京市</option>
+											<option value="武汉市">武汉市</option>
+											<option value="上海市">上海市</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">区(县)</label>
+									<div class="layui-input-inline">
+										<select name="district" lay-verify="">
+											<option value="昌平区">昌平区</option>
+											<option value="朝阳区">朝阳区</option>
+											<option value="大兴区">大兴区</option>
+											<option value="东城区">东城区</option>
+											<option value="房山区">房山区</option>
+											<option value="丰台区">丰台区</option>
+											<option value="海淀区">海淀区</option>
+											<option value="怀柔区">怀柔区</option>
+											<option value="门头沟区">门头沟区</option>
+											<option value="密云区">密云区</option>
+											<option value="平谷区">平谷区</option>
+											<option value="石景山区">石景山区</option>
+											<option value="顺义区">顺义区</option>
+											<option value="通州区">通州区</option>
+											<option value="西城区">西城区</option>
+											<option value="延庆区">延庆区</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">小区</label>
+									<div class="layui-input-inline">
+										<input type="text" name="community" required lay-verify="required" placeholder="输入小区" autocomplete="off"
+										 class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">面积</label>
+									<div class="layui-input-inline">
+										<input type="text" name="square" required lay-verify="required" placeholder="输入面积(平方米)" autocomplete="off"
+										 class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">建筑年代</label>
+									<div class="layui-input-inline">
+										<select name="ctime" lay-verify="">
+											<option value="1975">70年代</option>
+											<option value="1985">80年代</option>
+											<option value="1995">90年代</option>
+											<option value="2005">00年代</option>
+											<option value="2015">10年代</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">装修情况</label>
+									<div class="layui-input-inline">
+										<select name="rcondition" lay-verify="">
+											<option value="1">其他</option>
+											<option value="2">毛坯房</option>
+											<option value="3">粗装修</option>
+											<option value="4">精装修</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">建筑结构</label>
+									<div class="layui-input-inline">
+										<select name="struc" lay-verify="">
+											<option value="1">未知</option>
+											<option value="2">混合</option>
+											<option value="3">砖木</option>
+											<option value="4">砖及混凝土</option>
+											<option value="5">铁</option>
+											<option value="6">铁及复合材料</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">户型</label>
+									<div class="layui-input-inline">
+										<select name="btype" lay-verify="">
+											<option value="1">塔楼</option>
+											<option value="2">平房</option>
+											<option value="4">板房</option>
+											<option value="3">混合结构</option>
+										</select>
+									</div>
+									<div class="layui-input-inline">
+										<select name="living" lay-verify="">
+											<option value="1">1室</option>
+											<option value="2">2室</option>
+											<option value="3">3室</option>
+											<option value="4">4室</option>
+										</select>
+									</div>
+									<div class="layui-input-inline">
+										<select name="drawing" lay-verify="">
+											<option value="1">1厅</option>
+											<option value="2">2厅</option>
+											<option value="3">3厅</option>
+											<option value="4">4厅</option>
+										</select>
+									</div>
+									<div class="layui-input-inline">
+										<select name="kitchen" lay-verify="">
+											<option value="0">0厨房</option>
+											<option value="1">1厨房</option>
+											<option value="2">2厨房</option>
+											<option value="3">3厨房</option>
+										</select>
+									</div>
+									<div class="layui-input-inline">
+										<select name="bath" lay-verify="">
+											<option value="0">0卫</option>
+											<option value="1">1卫</option>
+											<option value="2">2卫</option>
+											<option value="3">3卫</option>
+										</select>
+									</div>
+								</div>
+								<!--朝向选项name置空从而不传值-->
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">朝向</label>
+									<div class="layui-input-inline">
+										<select name="">
+											<option value="010">东</option>
+											<option value="021">南</option>
+											<option value="0571">西</option>
+											<option value="0572">北</option>
+										</select>
+									</div>
+								</div>
+								<!--楼层这块在js里算出一个比率来确定高低-->
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">楼层</label>
+									<div class="layui-input-inline">
+										<input type="number" min="1" name="floor" required lay-verify="required" placeholder="输入楼层" autocomplete="off"
+										 class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">总楼层</label>
+									<div class="layui-input-inline">
+										<input type="number" min="1" name="total_floor" required lay-verify="required" placeholder="输入总楼层"
+										 autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-pane">
+									<label class="layui-form-label">房源特色</label>
+									<div class="layui-input-inline">
+										<input value="1" type="checkbox" name="five" title="满五">
+									</div>
+									<div class="layui-input-inline">
+										<input value="1" type="checkbox" name="elevator" title="有电梯">
+									</div>
+									<div class="layui-input-inline">
+										<input value="1" type="checkbox" name="subway" title="地铁房">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		//Demo
+		function parseParams(data) {
+			try {
+				var tempArr = [];
 
-    <form class="layui-form" action="">
-    <div style="padding: 20px; " class="content" >
-
-      <div class="layui-row layui-col-space15">
-    <div class="layui-col-md12">
-          <div class="layui-card layui-form-item" style="opacity: 0.9;">
-        <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">请填写房屋信息</div>
-        <div class="layui-card-body" style="padding: 15px;">
-        <div class="layui-form-item layui-form-pane">
-        
-            <label class="layui-form-label">城市</label>
-            <div class="layui-input-inline">
-                <select name="city" lay-verify="">
-                    <option value="北京市">北京市</option>
-                    <option value="武汉市">武汉市</option>
-                    <option value="上海市">上海市</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">区(县)</label>
-            <div class="layui-input-inline">
-                <select name="district" lay-verify="">
-                    <option value="昌平区">昌平区</option>
-                    <option value="朝阳区">朝阳区</option>
-                    <option value="大兴区">大兴区</option>
-                    <option value="东城区">东城区</option>
-                    <option value="房山区">房山区</option>
-                    <option value="丰台区">丰台区</option>
-                    <option value="海淀区">海淀区</option>
-                    <option value="怀柔区">怀柔区</option>
-                    <option value="门头沟区">门头沟区</option>
-                    <option value="密云区">密云区</option>
-                    <option value="平谷区">平谷区</option>
-                    <option value="石景山区">石景山区</option>
-                    <option value="顺义区">顺义区</option>
-                    <option value="通州区">通州区</option>
-                    <option value="西城区">西城区</option>
-                    <option value="延庆区">延庆区</option>
-                </select>
-            </div>
-        </div>
-        
-    
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">小区</label>
-            <div class="layui-input-inline">
-                <input type="text" name="community" required  lay-verify="required" placeholder="输入小区" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-
-
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">面积</label>
-            <div class="layui-input-inline">
-                <input type="text" name="square" required  lay-verify="required" placeholder="输入面积(平方米)" autocomplete="off" class="layui-input">
-
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">建筑年代</label>
-            <div class="layui-input-inline">
-                <select name="ctime" lay-verify="">
-                    <option value="1975">70年代</option>
-                    <option value="1985">80年代</option>
-                    <option value="1995">90年代</option>
-                    <option value="2005">00年代</option>
-                    <option value="2015">10年代</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">装修情况</label>
-            <div class="layui-input-inline">
-                <select name="rcondition" lay-verify="">
-                    <option value="1">其他</option>
-                    <option value="2">毛坯房</option>
-                    <option value="3">粗装修</option>
-                    <option value="4">精装修</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">建筑结构</label>
-            <div class="layui-input-inline">
-                <select name="struc" lay-verify="">
-                    <option value="1">未知</option>
-                    <option value="2">混合</option>
-                    <option value="3">砖木</option>
-                    <option value="4">砖及混凝土</option>
-                    <option value="5">铁</option>
-                    <option value="6">铁及复合材料</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">户型</label>
-
-            <div class="layui-input-inline">
-                <select name="btype" lay-verify="">
-                    <option value="1">塔楼</option>
-                    <option value="2">平房</option>
-                    <option value="4">板房</option>
-                    <option value="3">混合结构</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="living" lay-verify="">
-                    <option value="1">1室</option>
-                    <option value="2">2室</option>
-                    <option value="3">3室</option>
-                    <option value="4">4室</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="drawing" lay-verify="">
-                    <option value="1">1厅</option>
-                    <option value="2">2厅</option>
-                    <option value="3">3厅</option>
-                    <option value="4">4厅</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="kitchen" lay-verify="">
-                    <option value="0">0厨房</option>
-                    <option value="1">1厨房</option>
-                    <option value="2">2厨房</option>
-                    <option value="3">3厨房</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="bath" lay-verify="">
-                    <option value="0">0卫</option>
-                    <option value="1">1卫</option>
-                    <option value="2">2卫</option>
-                    <option value="3">3卫</option>
-                </select>
-            </div>
-        </div>
-        <!--朝向选项name置空从而不传值-->
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">朝向</label>
-            <div class="layui-input-inline">
-                <select name="">
-                    <option value="010">东</option>
-                    <option value="021">南</option>
-                    <option value="0571">西</option>
-                    <option value="0572">北</option>
-                </select>
-            </div>
-        </div>
-        <!--楼层这块在js里算出一个比率来确定高低-->
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">楼层</label>
-            <div class="layui-input-inline">
-                <input type="number" min="1" name="floor" required  lay-verify="required" placeholder="输入楼层" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">总楼层</label>
-            <div class="layui-input-inline">
-                <input type="number" min="1" name="total_floor" required  lay-verify="required" placeholder="输入总楼层" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label">房源特色</label>
-            <div class="layui-input-inline">
-                <input value="1" type="checkbox" name="five" title="满五">
-            </div>
-            <div class="layui-input-inline">
-                <input value="1" type="checkbox" name="elevator" title="有电梯">
-            </div>
-            <div class="layui-input-inline">
-                <input value="1" type="checkbox" name="subway" title="地铁房">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-            </div>
-        </div>
-        
-        </div>
-    </div>    </div> </div> </div>
-    </form>
-
-    <script type="text/javascript">
-        //Demo
-        function parseParams(data) {
-            try {
-                var tempArr = [];
-
-                for (var i in data) {
-                    var key = encodeURIComponent(i);
-                    var value = encodeURIComponent(data[i]);
-                    tempArr.push(key + '=' + value);
-                }
-                var urlParamsStr = tempArr.join('&');
-                return urlParamsStr;
-            } catch (err) {
-                return '';
-            }
-        }   
-        layui.use([ 'jquery', 'layer', 'element' ], function(){
-            $ = layui.jquery;
-            var form = layui.form;
-            form.render('select');
-            form.render('checkbox');
-            //监听提交
-            form.on('submit(formDemo)', function(data){
-                data=data.field;
-                var floor=data.floor,total_floor=data.total_floor,rank=floor/total_floor;
-                //alert(rank);
-                //location.href="result.html";
-                if(floor==1)
-                data.floor=3;
-                else if(floor==total_floor)
-                data.floor=4;
-                else if(rank>0.7)
-                data.floor=0;
-                else if(rank<0.3)
-                data.floor=2;
-                else
-                data.floor=1;
-                delete data.total_floor;
-                var square=data.square;
-                data=parseParams(data);
-                //alert(decodeURI(data));
-                layer.msg("正在估价，请稍候");
-                //alert(data);
-                $.ajax({
-                    url:"http://10.134.139.149:8124/?"+data,
-                    method:'get',
-                    success:function(res){
-                        //layer.msg(JSON.stringify(res));
-                        //alert(res);
-                        var averagePrice=res/square;
-                        averagePrice=averagePrice.toFixed(2);
-                        window.open("result.html?"+data+"&totalPrice="+res+"&averagePrice="+averagePrice);
-                    },
-                    error: function () {
-                        layer.msg("错误");
-                        //alert(this.url);
-                        //location.href="result.html?totalPrice=1&averagePrice=2";
-                    }
-
-                })
-                return false;
-            });
-        });
-    </script>
-</div>
-
+				for (var i in data) {
+					var key = encodeURIComponent(i);
+					var value = encodeURIComponent(data[i]);
+					tempArr.push(key + '=' + value);
+				}
+				var urlParamsStr = tempArr.join('&');
+				return urlParamsStr;
+			} catch (err) {
+				return '';
+			}
+		}
+		layui.use(['jquery', 'layer', 'element'], function () {
+			$ = layui.jquery;
+			var form = layui.form;
+			form.render('select');
+			form.render('checkbox');
+			//监听提交
+			form.on('submit(formDemo)', function (data) {
+				data = data.field;
+				var floor = data.floor,
+					total_floor = data.total_floor,
+					rank = floor / total_floor;
+				//alert(rank);
+				//location.href="result.html";
+				if (floor == 1)
+					data.floor = 3;
+				else if (floor == total_floor)
+					data.floor = 4;
+				else if (rank > 0.7)
+					data.floor = 0;
+				else if (rank < 0.3)
+					data.floor = 2;
+				else
+					data.floor = 1;
+				delete data.total_floor;
+				var square = data.square;
+				data = parseParams(data);
+				layer.msg("正在估价，请稍候");
+				$.ajax({
+					url: "http://10.134.139.149:8124/?" + data,
+					method: 'get',
+					success: function (res) {
+						var averagePrice = res / square;
+						averagePrice = averagePrice.toFixed(2);
+						window.open("result.html?" + data + "&totalPrice=" + res +
+							"&averagePrice=" + averagePrice);
+					},
+					error: function () {
+						layer.msg("错误");
+					}
+				})
+				return false;
+			});
+		});
+	</script>
 </body>
+
 </html>
