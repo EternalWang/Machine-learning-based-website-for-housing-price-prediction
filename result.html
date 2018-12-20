@@ -53,31 +53,25 @@
         </div>
       </div>
     </div>
-    
-    <!--
-    <div class="layui-col-md2">
-      <div class="layui-card layui-form-item" style="opacity: 0.7;">
-        <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color: #008888;font-size: 18px">房屋信息</div>
-        <div class="layui-card-body" >
-          <textarea  name="information" class="layui-textarea" style="min-height: 200px;">.../.../.../.../</textarea >
-        </div>
-      </div>
-    </div>
-    -->
   </div>
   <hr>
-
+  <div class="layui-card" style="opacity: 0.7">
+    <div class="layui-card-header" style="text-shadow:2px 2px 3px #333333;color: #ffffff;background-color:#008888;font-size: 30px;">附近商圈二手房价格趋势</div>
+    <div class="layui-card-body" style="width: 900px;height:300px;" id="main">
+    </div>
+  </div>
+  <hr>
 </div> 
 </form> 
-
+<form class="layui-form">
     <div class="layui-row ">
         <button class="layui-btn layui-col-md2 layui-col-md-offset5" lay-submit lay-filter="formDemo">重新估价</button>
     </div>
-
+  </form>
 
 </div> 
 <script src="layui\layui.js" charset="utf-8"></script>
-<script src="layui\layui.js" charset="utf-8"></script>
+<script src="echarts\echarts.common.min.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 　　function GetUrlParam(paraName) {
@@ -195,7 +189,77 @@ layui.use(['form', 'layer'], function(){
     "averagePriceHigh":(averagePrice*10000*1.1).toFixed(),
     "information":information
   });
+  form.on('submit(formDemo)', function(){
+          window.open("lay_index.html");
+  });
 });
+var initData=new Number,chartData=[],step=new Number;
+initData=averagePrice*7000,step=averagePrice*500;
+for(var i=0;i<12;i++)
+{
+  chartData.push(initData);
+  initData+=step;
+}
+function randomsort(a, b) {
+    return Math.random()>.5 ? -1 : 1;
+    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+}
+chartData.sort(randomsort);
+//alert(step,chartData);
+
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'),'light');
+
+        // 指定图表的配置项和数据
+var option = {
+  title : {
+        text: '均价（元/平米）',
+        //subtext: '均价（元/平米）'
+    },
+    tooltip : {
+        trigger: 'axis',
+        formatter: "单价:{c}元/平"
+    },
+    legend: {
+        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'价格',
+            type:'line',
+            //stack: '总量',
+            data:chartData
+        }
+    ]
+};
+                    
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
 </script>
 
 </body>
