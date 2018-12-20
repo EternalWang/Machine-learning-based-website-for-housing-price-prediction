@@ -1,8 +1,8 @@
 # Machine-learning-based-website-for-housing-price-prediction
+此项目为预估房屋价格的网站 
 
-主要页面是lay_index.html.
+# 前端
+前端主要页面为lay_index.html和result.html
 
-参考“快速原型二 页面1 2 3”以及链家网站https://bj.lianjia.com/yezhu/gujia
-
-# server
+# 后端
 new.csv放主目录下，运行house_prepare.py,再运行server.py
